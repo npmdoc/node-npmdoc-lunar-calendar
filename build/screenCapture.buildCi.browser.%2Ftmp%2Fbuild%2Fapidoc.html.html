@@ -1,0 +1,415 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a>lunar-calendar (v0.1.4)</a>
+</h1>
+<h4>å†œåŽ†ï¼ˆé˜´åŽ†ï¼‰ä¸‡å¹´åŽ†ï¼Œæ˜¯ä¸€æ¬¾æ”¯æŒNode.jså’Œæµè§ˆå™¨ç«¯ä½¿ç”¨çš„å…¨åŠŸèƒ½å†œåŽ†å’Œå…¬åŽ†æ—¥åŽ†ç±»åº“ã€‚æ”¯æŒå†œåŽ†ä¸Žå…¬åŽ†ä¹‹é—´ç›¸äº’è½¬æ¢ï¼Œå«æœ‰äºŒåå››èŠ‚æ°”ï¼Œå¤©å¹²åœ°æ”¯çºªå¹´çºªæœˆçºªæ—¥ï¼Œç”Ÿè‚–å±žç›¸ï¼Œå…¬åŽ†èŠ‚å‡æ—¥åŠå†œåŽ†ä¼&nbsp;ç»ŸèŠ‚å‡æ—¥ä¿¡æ¯ç­‰åŠŸèƒ½ã€‚è‡ªå¸¦2013-2014èŠ‚å‡æ—¥å®‰æŽ’æ•°æ®ï¼Œå¹¶å¯è‡ªè¡Œé…ç½®ã€‚å¸¦æœ‰é»„åŽ†æ•°æ®ï¼Œå¯è‡ªè¡Œé€‰æ‹©é…ç½®ã€‚æ”¯æŒ1891-2100å¹´ã€‚</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lunar-calendar">module lunar-calendar</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.calendar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>calendar
+            <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.getSolarMonthDays">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>getSolarMonthDays
+            <span class="apidocSignatureSpan">(year, month)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.lunarToSolar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>lunarToSolar
+            <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.setWorktime">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>setWorktime
+            <span class="apidocSignatureSpan">(workData)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.solarCalendar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>solarCalendar
+            <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.solarToLunar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>solarToLunar
+            <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lunar-calendar" id="apidoc.module.lunar-calendar">module lunar-calendar</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.calendar" id="apidoc.element.lunar-calendar.calendar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>calendar
+        <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function calendar(_year, _month, fill){
+		var inputDate = formateDate(_year,_month);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		
+		var calendarData = solarCalendar(year,month+1,fill);
+		for(var i=0;i&lt;calendarData.monthData.length;i++){
+			var cData = calendarData.monthData[i];
+			var lunarData = solarToLunar(cData.year,cData.month,cData.day);
+			extend(calendarData.monthData[i],lunarData);
+		}
+		return calendarData;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+###Node.js###
+var LunarCalendar = require("lunar-calendar");
+
+###æµè§ˆå™¨###
+`window.LunarCalendar`æ˜¯ä¸€ä¸ªå…¨å±€å¯¹è±¡ï¼Œå¯ä»¥å…¨å±€ä½œç”¨åŸŸç›´æŽ¥è°ƒç”¨ã€‚
+
+##æ–¹æ³•åˆ—è¡¨##
+###LunarCalendar.<span class="apidocCodeKeywordSpan">calendar</span>(year,month[,fill])###
+é€šè¿‡å…¬åŽ†èŽ·å–æŸæœˆå†œåŽ†æ•°æ®
+
+####å‚æ•°è¯´æ˜Ž####
+- @param {Number} `year` å…¬åŽ†å¹´ èŒƒå›´[1891-2100]
+- @param {Number} `month` å…¬åŽ†æœˆ èŒƒå›´[1-12]
+- @param {Boolean} `fill`ï¼ˆå¯é€‰ï¼‰ æ˜¯å¦å¡«å……å½“æœˆæ—¥åŽ†é¦–å°¾æ—¥æœŸï¼Œè®¾ä¸ºtrueæ—¶ï¼Œä¼šåœ¨é¦–å°¾å¡«å…¥ä¸Šä¸‹æœˆæ•°æ®ï¼Œè‡ªåŠ¨è¡¥å…¨ä¸€ä¸ª7*6é˜µåˆ—æ•°æ®ã€‚ï¼ˆå¯æ›´ç¾Žè§‚çš„æ‰“é€&nbsp;ä½&nbsp;çš„ä¸‡å¹´åŽ†äº§å“ï¼‰
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.getSolarMonthDays" id="apidoc.element.lunar-calendar.getSolarMonthDays">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>getSolarMonthDays
+        <span class="apidocSignatureSpan">(year, month)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getSolarMonthDays(year, month){
+		 var monthDays = [31,isLeapYear(year)?29:28,31,30,31,30,31,31,30,31,30,31];
+		 return monthDays[month];
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.lunarToSolar" id="apidoc.element.lunar-calendar.lunarToSolar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>lunarToSolar
+        <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function lunarToSolar(_year, _month, _day){
+		var inputDate = formateDate(_year,_month,_day);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		var day = inputDate.day;
+		
+		var between = getDaysBetweenZheng(year,month,day); //ç¦»æ­£æœˆåˆä¸€çš„å¤©æ•°
+		var yearData = lunarInfo[year-minYear];
+		var zenMonth = yearData[1];
+		var zenDay = yearData[2];
+		
+		var offDate = new Date(year,zenMonth-1,zenDay).getTime() + between * 86400000;
+			offDate = new Date(offDate);
+		return {
+			year : offDate.getFullYear(),
+			month : offDate.getMonth()+1,
+			day : offDate.getDate()
+		};
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	    "lunarDayName": "åˆäºŒ", //å†œåŽ†æ—¥ä¸­æ–‡å
+	    "lunarLeapMonth": 9, //å†œåŽ†é—°æœˆæ‰€åœ¨æœˆä»½ï¼Œ0è¡¨ç¤ºæ—&nbsp;é—°æœˆ
+		"solarFestival": "", //å…¬åŽ†èŠ‚å‡æ—¥ï¼Œundefinedæˆ–â€˜åŠ³åŠ¨èŠ‚â€™ä¹‹ç±»
+		"lunarFestival": "", //å†œåŽ†èŠ‚å‡æ—¥ï¼Œundefinedæˆ–â€˜é™¤å¤•â€™ä¹‹ç±»
+		"term": "" //äºŒåå››èŠ‚æ°”åï¼Œundefinedæˆ–â€˜ç«‹æ˜¥â€™ä¹‹ç±»
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">lunarToSolar</span>(year,month,day)###
+å°†å†œåŽ†è½¬æ¢ä¸ºå…¬åŽ†
+
+####å‚æ•°è¯´æ˜Ž####
+- @param {Number} `year` å†œåŽ†å¹´ èŒƒå›´[1891-2100]
+- @param {Number} `month` å†œåŽ†æœˆ èŒƒå›´[1-13]ï¼ˆæœ‰é—°æœˆæƒ…å†µï¼Œæ¯”å¦‚å½“å‰é—°9æœˆï¼Œ10è¡¨ç¤ºé—°9æœˆï¼Œ11è¡¨ç¤º10æœˆï¼‰
+- @param {Number} `day` å†œåŽ†æ—¥ èŒƒå›´[1-30]
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.setWorktime" id="apidoc.element.lunar-calendar.setWorktime">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>setWorktime
+        <span class="apidocSignatureSpan">(workData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function setWorktime(workData){
+		extend(worktime,workData);
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+####è¿”å›žæ•°æ®####
+	{
+	    "year": 2014, //å…¬åŽ†å¹´
+	    "month": 1, //å…¬åŽ†æœˆ
+	    "day": 31 //å…¬åŽ†æ—¥
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">setWorktime</span>(data)###
+è®¾ç½®æŸå¹´çš„èŠ‚å‡æ—¥å®‰æŽ’ä¿¡æ¯ï¼ˆç±»åº“å·²å†…ç½®2013-2014å¹´çš„æ•°æ®ï¼‰
+
+####å‚æ•°è¯´æ˜Ž####
+- @param {Object} `data` èŠ‚å‡æ—¥å®‰æŽ’ä¿¡æ¯(ä»¥å¹´ä¸ºkeyï¼Œå¯è®¾ç½®å¤šå¹´)
+- 0ï¼šæ—&nbsp;ç‰¹æ®Šå®‰æŽ’ï¼Œ1ï¼šå·¥ä½œï¼Œ2ï¼šæ”¾å‡
+
+**å‚æ•°dataæ&nbsp;¼å¼å¦‚ä¸‹ï¼š**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.solarCalendar" id="apidoc.element.lunar-calendar.solarCalendar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>solarCalendar
+        <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function solarCalendar(_year, _month, fill){
+		var inputDate = formateDate(_year,_month);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		
+		var firstDate = new Date(year,month,1);
+		var preMonthDays,preMonthData,nextMonthData;
+		
+		var res = {
+			firstDay : firstDate.getDay(), //è¯¥æœˆ1å·æ˜ŸæœŸå‡&nbsp;
+			monthDays : getSolarMonthDays(year,month), //è¯¥æœˆå¤©æ•°
+			monthData : []
+		};
+		
+		res.monthData = creatLenArr(year,month+1,res.monthDays,1);
+
+		if(fill){
+			if(res.firstDay &gt; 0){ //å‰è¡¥
+				var preYear = month-1&lt;0 ? year-1 : year;
+				var preMonth = month-1&lt;0 ? 11 : month-1;
+				preMonthDays = getSolarMonthDays(preYear,preMonth);
+				preMonthData = creatLenArr(preYear,preMonth+1,res.firstDay,preMonthDays-res.firstDay+1);
+				res.monthData = preMonthData.concat(res.monthData);
+			}
+			
+			if(7*6 - res.monthData.length!=0){ //åŽè¡¥
+				var nextYear = month+1&gt;11 ? year+1 : year;
+				var nextMonth = month+1&gt;11 ? 0 : month+1;
+				var fillLen = 7*6 - res.monthData.length;
+				nextMonthData = creatLenArr(nextYear,nextMonth+1,fillLen,1);
+				res.monthData = res.monthData.concat(nextMonthData);
+			}
+		}
+		
+		return res;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+				"lunarFestival": "", //å†œåŽ†èŠ‚å‡æ—¥ï¼Œundefinedæˆ–â€˜é™¤å¤•â€™ä¹‹ç±»
+				"term": "" //äºŒåå››èŠ‚æ°”åï¼Œundefinedæˆ–â€˜ç«‹æ˜¥â€™ä¹‹ç±»
+	        },
+			...
+	    ]
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">solarCalendar</span>(year,month[,fill])###
+èŽ·å–å…¬åŽ†æŸæœˆæ—¥åŽ†æ•°æ®ï¼ˆä¸å¸¦å†œåŽ†ä¿¡æ¯ï¼‰
+
+####å‚æ•°è¯´æ˜Ž####
+- @param {Number} `year` å…¬åŽ†å¹´ èŒƒå›´[1-~]å…¬å…ƒåŽ
+- @param {Number} `month` å…¬åŽ†æœˆ èŒƒå›´[1-12]
+- @param {Boolean} `fill`ï¼ˆå¯é€‰ï¼‰ æ˜¯å¦å¡«å……å½“æœˆæ—¥åŽ†é¦–å°¾æ—¥æœŸï¼Œè®¾ä¸ºtrueæ—¶ï¼Œä¼šåœ¨é¦–å°¾å¡«å…¥ä¸Šä¸‹æœˆæ•°æ®ï¼Œè‡ªåŠ¨è¡¥å…¨ä¸€ä¸ª7*6é˜µåˆ—æ•°æ®ã€‚ï¼ˆå¯æ›´ç¾Žè§‚çš„æ‰“é€&nbsp;ä½&nbsp;çš„ä¸‡å¹´åŽ†äº§å“ï¼‰
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.solarToLunar" id="apidoc.element.lunar-calendar.solarToLunar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>solarToLunar
+        <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function solarToLunar(_year, _month, _day){
+		var inputDate = formateDate(_year,_month,_day,minYear);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		var day = inputDate.day;
+		
+		cacheUtil.setCurrent(year);
+		//ç«‹æ˜¥æ—¥æœŸ
+		var term2 = cacheUtil.get('term2') ? cacheUtil.get('term2') : cacheUtil.set('term2',getTerm(year,2));
+		//äºŒåå››èŠ‚æ°”
+		var termList = cacheUtil.get('termList') ? cacheUtil.get('termList') : cacheUtil.set('termList',getYearTerm(year));
+		
+		var firstTerm = getTerm(year,month*2); //æŸæœˆç¬¬ä¸€ä¸ªèŠ‚æ°”å¼€å§‹æ—¥æœŸ
+		var GanZhiYear = (month&gt;1 || month==1 &amp;&amp; day&gt;=term2) ? year+1 : year;//å¹²æ”¯æ‰€åœ¨å¹´ä»½
+		var GanZhiMonth = day&gt;=firstTerm ? month+1 : month; //å¹²æ”¯æ‰€åœ¨æœˆä»½ï¼ˆä»¥èŠ‚æ°”ä¸ºç•Œï¼‰
+		
+		var lunarDate = getLunarByBetween(year,month,day);
+		var lunarLeapMonth = getLunarLeapYear(lunarDate[0]);
+		var lunarMonthName = '';
+		if(lunarLeapMonth&gt;0 &amp;&amp; lunarLeapMonth==lunarDate[1]){
+			lunarMonthName = 'é—°'+DATA.monthCn[lunarDate[1]-1]+'æœˆ';
+		}else if(lunarLeapMonth&gt;0 &amp;&amp; lunarDate[1]&gt;lunarLeapMonth){
+			lunarMonthName = DATA.monthCn[lunarDate[1]-1]+'æœˆ';
+		}else{
+			lunarMonthName = DATA.monthCn[lunarDate[1]]+'æœˆ';
+		}
+		
+		//å†œåŽ†èŠ‚æ—¥åˆ¤æ–­
+		var lunarFtv = '';
+		var lunarMonthDays = getLunarYearDays(lunarDate[0]).monthDays;
+		//é™¤å¤•
+		if(lunarDate[1] == lunarMonthDays.length-1 &amp;&amp; lunarDate[2]==lunarMonthDays[lunarMonthDays.length-1]){
+			lunarFtv = lunarFestival['d0100'];
+		}else if(lunarLeapMonth&gt;0 &amp;&amp; lunarDate[1]&gt;lunarLeapMonth){
+			lunarFtv = lunarFestival[formateDayD4(lunarDate[1]-1,lunarDate[2])];
+		}else{
+			lunarFtv = lunarFestival[formateDayD4(lunarDate[1],lunarDate[2])];
+		}
+		
+		var res = {
+			zodiac : getYearZodiac(GanZhiYear),
+			GanZhiYear : getLunarYearName(GanZhiYear),
+			GanZhiMonth : getLunarMonthName(year,GanZhiMonth),
+			GanZhiDay : getLunarDayName(year,month,day),
+			//æ”¾å‡å®‰æŽ’ï¼š0æ—&nbsp;ç‰¹æ®Šå®‰æŽ’ï¼Œ1å·¥ä½œï¼Œ2æ”¾å‡
+			worktime : worktime['y'+year] &amp;&amp; worktime['y'+year][formateDayD4(month,day)] ? worktime['y'+year][formateDayD4(month,day)] :
+0,
+			term : termList[formateDayD4(month,day)],
+			
+			lunarYear : lunarDate[0],
+			lunarMonth : lunarDate[1]+1,
+			lunarDay : lunarDate[2],
+			lunarMonthName : lunarMonthName,
+			lunarDayName : DATA.dateCn[lunarDate[2]-1],
+			lunarLeapMonth : lunarLeapMonth,
+			
+			solarFestival : solarFestival[formateDayD4(month,day)],
+			lunarFestival : lunarFtv
+		};
+
+		return res;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	            "month": 2, //å…¬åŽ†æœˆ
+	            "day": 1 //å…¬åŽ†æ—¥
+	        },
+			...
+	    ]
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">solarToLunar</span>(year,month,day)###
+å°†å…¬åŽ†è½¬æ¢ä¸ºå†œåŽ†
+
+####å‚æ•°è¯´æ˜Ž####
+- @param {Number} `year` å…¬åŽ†å¹´ èŒƒå›´[1891-2100]
+- @param {Number} `month` å…¬åŽ†æœˆ èŒƒå›´[1-12]
+- @param {Number} `day` å…¬åŽ†æ—¥ èŒƒå›´[1-31]
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>

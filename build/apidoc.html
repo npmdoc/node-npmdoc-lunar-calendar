@@ -1,0 +1,419 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+    >lunar-calendar (v0.1.4)</a>
+</h1>
+<h4>农历（阴历）万年历，是一款支持Node.js和浏览器端使用的全功能农历和公历日历类库。支持农历与公历之间相互转换，含有二十四节气，天干地支纪年纪月纪日，生肖属相，公历节假日及农历传统节假日信息等功能。自带2013-2014节假日安排数据，并可自行配置。带有黄历数据，可自行选择配置。支持1891-2100年。</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lunar-calendar">module lunar-calendar</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.calendar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>calendar
+            <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.getSolarMonthDays">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>getSolarMonthDays
+            <span class="apidocSignatureSpan">(year, month)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.lunarToSolar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>lunarToSolar
+            <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.setWorktime">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>setWorktime
+            <span class="apidocSignatureSpan">(workData)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.solarCalendar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>solarCalendar
+            <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lunar-calendar.solarToLunar">
+            function <span class="apidocSignatureSpan">lunar-calendar.</span>solarToLunar
+            <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lunar-calendar" id="apidoc.module.lunar-calendar">module lunar-calendar</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.calendar" id="apidoc.element.lunar-calendar.calendar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>calendar
+        <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function calendar(_year, _month, fill){
+		var inputDate = formateDate(_year,_month);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		
+		var calendarData = solarCalendar(year,month+1,fill);
+		for(var i=0;i&#x3c;calendarData.monthData.length;i++){
+			var cData = calendarData.monthData[i];
+			var lunarData = solarToLunar(cData.year,cData.month,cData.day);
+			extend(calendarData.monthData[i],lunarData);
+		}
+		return calendarData;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+###Node.js###
+var LunarCalendar = require(&#x22;lunar-calendar&#x22;);
+
+###浏览器###
+`window.LunarCalendar`是一个全局对象，可以全局作用域直接调用。
+
+##方法列表##
+###LunarCalendar.<span class="apidocCodeKeywordSpan">calendar</span>(year,month[,fill])###
+通过公历获取某月农历数据
+
+####参数说明####
+- @param {Number} `year` 公历年 范围[1891-2100]
+- @param {Number} `month` 公历月 范围[1-12]
+- @param {Boolean} `fill`（可选） 是否填充当月日历首尾日期，设为true时，会在首尾填入上下月数据，自动补全一个7*6阵列数据。（可更美观的打造你的万年历产品）
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.getSolarMonthDays" id="apidoc.element.lunar-calendar.getSolarMonthDays">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>getSolarMonthDays
+        <span class="apidocSignatureSpan">(year, month)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getSolarMonthDays(year, month){
+		 var monthDays = [31,isLeapYear(year)?29:28,31,30,31,30,31,31,30,31,30,31];
+		 return monthDays[month];
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.lunarToSolar" id="apidoc.element.lunar-calendar.lunarToSolar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>lunarToSolar
+        <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function lunarToSolar(_year, _month, _day){
+		var inputDate = formateDate(_year,_month,_day);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		var day = inputDate.day;
+		
+		var between = getDaysBetweenZheng(year,month,day); //离正月初一的天数
+		var yearData = lunarInfo[year-minYear];
+		var zenMonth = yearData[1];
+		var zenDay = yearData[2];
+		
+		var offDate = new Date(year,zenMonth-1,zenDay).getTime() + between * 86400000;
+			offDate = new Date(offDate);
+		return {
+			year : offDate.getFullYear(),
+			month : offDate.getMonth()+1,
+			day : offDate.getDate()
+		};
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	    &#x22;lunarDayName&#x22;: &#x22;初二&#x22;, //农历日中文名
+	    &#x22;lunarLeapMonth&#x22;: 9, //农历闰月所在月份，0表示无闰月
+		&#x22;solarFestival&#x22;: &#x22;&#x22;, //公历节假日，undefined或‘劳动节’之类
+		&#x22;lunarFestival&#x22;: &#x22;&#x22;, //农历节假日，undefined或‘除夕’之类
+		&#x22;term&#x22;: &#x22;&#x22; //二十四节气名，undefined或‘立春’之类
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">lunarToSolar</span>(year,month,day)###
+将农历转换为公历
+
+####参数说明####
+- @param {Number} `year` 农历年 范围[1891-2100]
+- @param {Number} `month` 农历月 范围[1-13]（有闰月情况，比如当前闰9月，10表示闰9月，11表示10月）
+- @param {Number} `day` 农历日 范围[1-30]
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.setWorktime" id="apidoc.element.lunar-calendar.setWorktime">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>setWorktime
+        <span class="apidocSignatureSpan">(workData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function setWorktime(workData){
+		extend(worktime,workData);
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+####返回数据####
+	{
+	    &#x22;year&#x22;: 2014, //公历年
+	    &#x22;month&#x22;: 1, //公历月
+	    &#x22;day&#x22;: 31 //公历日
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">setWorktime</span>(data)###
+设置某年的节假日安排信息（类库已内置2013-2014年的数据）
+
+####参数说明####
+- @param {Object} `data` 节假日安排信息(以年为key，可设置多年)
+- 0：无特殊安排，1：工作，2：放假
+
+**参数data格式如下：**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.solarCalendar" id="apidoc.element.lunar-calendar.solarCalendar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>solarCalendar
+        <span class="apidocSignatureSpan">(_year, _month, fill)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function solarCalendar(_year, _month, fill){
+		var inputDate = formateDate(_year,_month);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		
+		var firstDate = new Date(year,month,1);
+		var preMonthDays,preMonthData,nextMonthData;
+		
+		var res = {
+			firstDay : firstDate.getDay(), //该月1号星期几
+			monthDays : getSolarMonthDays(year,month), //该月天数
+			monthData : []
+		};
+		
+		res.monthData = creatLenArr(year,month+1,res.monthDays,1);
+
+		if(fill){
+			if(res.firstDay &#x3e; 0){ //前补
+				var preYear = month-1&#x3c;0 ? year-1 : year;
+				var preMonth = month-1&#x3c;0 ? 11 : month-1;
+				preMonthDays = getSolarMonthDays(preYear,preMonth);
+				preMonthData = creatLenArr(preYear,preMonth+1,res.firstDay,preMonthDays-res.firstDay+1);
+				res.monthData = preMonthData.concat(res.monthData);
+			}
+			
+			if(7*6 - res.monthData.length!=0){ //后补
+				var nextYear = month+1&#x3e;11 ? year+1 : year;
+				var nextMonth = month+1&#x3e;11 ? 0 : month+1;
+				var fillLen = 7*6 - res.monthData.length;
+				nextMonthData = creatLenArr(nextYear,nextMonth+1,fillLen,1);
+				res.monthData = res.monthData.concat(nextMonthData);
+			}
+		}
+		
+		return res;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+				&#x22;lunarFestival&#x22;: &#x22;&#x22;, //农历节假日，undefined或‘除夕’之类
+				&#x22;term&#x22;: &#x22;&#x22; //二十四节气名，undefined或‘立春’之类
+	        },
+			...
+	    ]
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">solarCalendar</span>(year,month[,fill])###
+获取公历某月日历数据（不带农历信息）
+
+####参数说明####
+- @param {Number} `year` 公历年 范围[1-~]公元后
+- @param {Number} `month` 公历月 范围[1-12]
+- @param {Boolean} `fill`（可选） 是否填充当月日历首尾日期，设为true时，会在首尾填入上下月数据，自动补全一个7*6阵列数据。（可更美观的打造你的万年历产品）
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lunar-calendar.solarToLunar" id="apidoc.element.lunar-calendar.solarToLunar">
+        function <span class="apidocSignatureSpan">lunar-calendar.</span>solarToLunar
+        <span class="apidocSignatureSpan">(_year, _month, _day)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function solarToLunar(_year, _month, _day){
+		var inputDate = formateDate(_year,_month,_day,minYear);
+		if(inputDate.error)return inputDate;
+		var year = inputDate.year;
+		var month = inputDate.month;
+		var day = inputDate.day;
+		
+		cacheUtil.setCurrent(year);
+		//立春日期
+		var term2 = cacheUtil.get(&#x27;term2&#x27;) ? cacheUtil.get(&#x27;term2&#x27;) : cacheUtil.set(&#x27;term2&#x27;,getTerm(year,2));
+		//二十四节气
+		var termList = cacheUtil.get(&#x27;termList&#x27;) ? cacheUtil.get(&#x27;termList&#x27;) : cacheUtil.set(&#x27;termList&#x27;,getYearTerm(year));
+		
+		var firstTerm = getTerm(year,month*2); //某月第一个节气开始日期
+		var GanZhiYear = (month&#x3e;1 || month==1 &#x26;&#x26; day&#x3e;=term2) ? year+1 : year;//干支所在年份
+		var GanZhiMonth = day&#x3e;=firstTerm ? month+1 : month; //干支所在月份（以节气为界）
+		
+		var lunarDate = getLunarByBetween(year,month,day);
+		var lunarLeapMonth = getLunarLeapYear(lunarDate[0]);
+		var lunarMonthName = &#x27;&#x27;;
+		if(lunarLeapMonth&#x3e;0 &#x26;&#x26; lunarLeapMonth==lunarDate[1]){
+			lunarMonthName = &#x27;闰&#x27;+DATA.monthCn[lunarDate[1]-1]+&#x27;月&#x27;;
+		}else if(lunarLeapMonth&#x3e;0 &#x26;&#x26; lunarDate[1]&#x3e;lunarLeapMonth){
+			lunarMonthName = DATA.monthCn[lunarDate[1]-1]+&#x27;月&#x27;;
+		}else{
+			lunarMonthName = DATA.monthCn[lunarDate[1]]+&#x27;月&#x27;;
+		}
+		
+		//农历节日判断
+		var lunarFtv = &#x27;&#x27;;
+		var lunarMonthDays = getLunarYearDays(lunarDate[0]).monthDays;
+		//除夕
+		if(lunarDate[1] == lunarMonthDays.length-1 &#x26;&#x26; lunarDate[2]==lunarMonthDays[lunarMonthDays.length-1]){
+			lunarFtv = lunarFestival[&#x27;d0100&#x27;];
+		}else if(lunarLeapMonth&#x3e;0 &#x26;&#x26; lunarDate[1]&#x3e;lunarLeapMonth){
+			lunarFtv = lunarFestival[formateDayD4(lunarDate[1]-1,lunarDate[2])];
+		}else{
+			lunarFtv = lunarFestival[formateDayD4(lunarDate[1],lunarDate[2])];
+		}
+		
+		var res = {
+			zodiac : getYearZodiac(GanZhiYear),
+			GanZhiYear : getLunarYearName(GanZhiYear),
+			GanZhiMonth : getLunarMonthName(year,GanZhiMonth),
+			GanZhiDay : getLunarDayName(year,month,day),
+			//放假安排：0无特殊安排，1工作，2放假
+			worktime : worktime[&#x27;y&#x27;+year] &#x26;&#x26; worktime[&#x27;y&#x27;+year][formateDayD4(month,day)] ? worktime[&#x27;y&#x27;+year][formateDayD4(month,day)] :
+0,
+			term : termList[formateDayD4(month,day)],
+			
+			lunarYear : lunarDate[0],
+			lunarMonth : lunarDate[1]+1,
+			lunarDay : lunarDate[2],
+			lunarMonthName : lunarMonthName,
+			lunarDayName : DATA.dateCn[lunarDate[2]-1],
+			lunarLeapMonth : lunarLeapMonth,
+			
+			solarFestival : solarFestival[formateDayD4(month,day)],
+			lunarFestival : lunarFtv
+		};
+
+		return res;
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	            &#x22;month&#x22;: 2, //公历月
+	            &#x22;day&#x22;: 1 //公历日
+	        },
+			...
+	    ]
+	}
+
+###LunarCalendar.<span class="apidocCodeKeywordSpan">solarToLunar</span>(year,month,day)###
+将公历转换为农历
+
+####参数说明####
+- @param {Number} `year` 公历年 范围[1891-2100]
+- @param {Number} `month` 公历月 范围[1-12]
+- @param {Number} `day` 公历日 范围[1-31]
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
